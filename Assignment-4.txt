@@ -1,0 +1,115 @@
+Question : Write rules to define the following relationships: 
+
+1. (a) is_planet(X):True if argument orbits a star.
+
+Answer :- 
+
+Facts :- 
+orbits(mercury,sol).
+orbits(venus,sol).
+orbits(earth,sol).
+orbits(mars,sol).
+orbits(jupiter,sol).
+orbits(moon,earth).
+orbits(sputnik,earth).
+orbits(phobos,mars).
+orbits(deimos,mars).
+orbits(io,jupiter).
+has_water(earth).
+has_water(mars).
+has_water(moon).
+star(sirius). 
+star(canopus).
+
+Rules :-
+
+is_planet(X) :- orbits(X,sol).
+
+Query :-
+
+?- is_planet(X).
+
+
+
+2. (b) is_satellite(X):True if argument orbits a planet.
+
+Facts :-  same as in question 1.(a).
+
+Rules :- 
+
+is_planet(X) :- orbits(X,sol).
+is_satellite(Y) :- orbits(Y,X), is_planet(X).
+
+Query :- 
+
+?- is_satellite(Y).
+
+1  . (C ) is_not_artificial_satelite:True if argument is a satellite and has water.
+
+Facts :-  same as in question 1.(a).
+
+Rules :- 
+
+is_planet(X) :- orbits(X,sol).
+is_satellite(Y) :- orbits(Y,X), is_planet(X).
+is_not_artificial_satelite(X,Y,Z) :- is_planet(X), is_satellite(Y), has_water(Z).
+
+Query :-
+
+?- is_not_artificial_satelite(X,Y,Z).
+
+1 . (d) subordinate(X,Y): True if argumentX orbits another orbit which orbitsY.
+
+Facts :-  same as in question 1.(a).
+
+Rules :-
+
+subordinate(X,Y):-orbits(X,sol),orbits(Y,X).
+
+Query :- 
+
+subordinate(X,Y).
+
+1 . (e) milkyway(X): True if argument orbits ‘sol’.
+
+Rules :-
+
+milkyway(X) :- orbits(X,sol).
+
+Query :- 
+
+milkyway(X).
+
+
+Write queries for the following questions:
+
+2. (a). Show all stars.
+
+Query :- star(X). Output = sol, sirius and canopus.
+
+2. (b). Show all planets
+
+Query :- planet(X,sol). Output = mercury, venus, earth, mars and  jupiter.
+
+
+2. (c). Show all satellites.
+
+Query :- 
+
+is_planet(X) :- orbits(X,sol).
+is_satellite(Y) :- orbits(Y,X), is_planet(X).
+is_satellite(Y).
+
+Output = moon, sputnik, phobos, deimos and io.
+
+2. (d) Is moon an artificial satellite?
+
+Query :- has_water(moon).  Output =  True
+
+2. (e) Is moon a subordinate orbit of sol?
+
+Query :- orbits(earth,sol),orbits(moon,earth).  Output = True
+
+2. (f) Show all the planets that has water.
+
+Query :- has_water(X). Output = earth, mars and moon. 
