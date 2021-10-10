@@ -31,7 +31,7 @@ Query :-
 
 
 
-2. (b) is_satellite(X):True if argument orbits a planet.
+1. (b) is_satellite(X):True if argument orbits a planet.
 
 Facts :-  same as in question 1.(a).
 
@@ -89,7 +89,7 @@ Query :- star(X). Output = sol, sirius and canopus.
 
 2. (b). Show all planets
 
-Query :- planet(X,sol). Output = mercury, venus, earth, mars and  jupiter.
+Query :- orbits(X,sol). Output = mercury, venus, earth, mars and  jupiter.
 
 
 2. (c). Show all satellites.
